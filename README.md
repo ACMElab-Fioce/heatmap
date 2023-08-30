@@ -19,4 +19,6 @@ esteja é necessário que o usuário faça a alteração manualmente.
 
 ## Script 3 (align_sequences):
 - Input: Arquivo TSV
-- Output: Arquivo TSV separando mutações e a característica
+- Output: Arquivo TSV com os valores em porcentagem da presença de mutações, separado por característica
+![image](https://github.com/ACMElab-Fioce/heatmap/assets/98467661/9b926dd6-37a6-4285-892a-df15fbb6af30)
+
