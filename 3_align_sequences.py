@@ -21,17 +21,13 @@ df.to_csv("temp_df.tsv", sep='\t', index=True)
 # Continuação do código...
 dic_clados_mut = {}
 grupo_clados = df.groupby(by=["clade"])
+
 for idx, grupo in grupo_clados:
-    clado_nome = grupo['clade'].tolist()
+    clado_nome = grupo["clade"].tolist()
     clado = clado_nome[0]
     num_amostras = len(clado_nome)   
     count_df = grupo[colunas].apply(pd.Series.value_counts).fillna(0).drop('N').transform(lambda x: x / x.sum()).fillna(0)
     count_df.to_csv(clado +".tsv",sep='\t')
-    # print(count_df)
-    # ref.to_csv("temp_df_ref.tsv", sep='\t',index=False)
-    # count_df.to_csv("temp_df.tsv",sep='\t',index=True)
-    # ref = pd.read_csv("temp_df_ref.tsv", sep='\t')
-    # count_df = pd.read_csv("temp_df.tsv", sep='\t', index_col=0)
     count_df_transpose = count_df.T
     # continue   
 # exit()
@@ -50,7 +46,6 @@ for idx, grupo in grupo_clados:
                     mut_e_freq[nuc_ref+"_"+str(pos)+"_"+nuc] = str(linha[nuc])
                     temp_list.append([linha[x] for x in nome_colunas])
                     temp_list_index.append(pos)
-
     dic_clados_mut[clado] = (mut_e_freq, num_amostras)
 # exit(0)
 df_muts = pd.DataFrame([[chave, valor[0], valor[1]] for chave, valor in dic_clados_mut.items()], columns=["clade", "mutations","n_samples"])
